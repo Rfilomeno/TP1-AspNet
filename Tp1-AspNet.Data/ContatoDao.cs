@@ -8,13 +8,18 @@ using Tp1_AspNet.Domain.Models;
 
 namespace Tp1_AspNet.Data
 {
-    public class ContatoDao
+    public class ContatoDao : IContatoDao
     {
-        EntityContext contexto = new EntityContext();
+        public EntityContext _contexto { get; set; }
+
+        public ContatoDao(EntityContext contexto)
+        {
+            this._contexto = contexto;
+        }
 
         public Contato[] GetAll()
         {
-            Contato[] contatos = contexto.Contatos.ToArray();
+            Contato[] contatos = _contexto.Contatos.ToArray();
 
             return contatos;
         }

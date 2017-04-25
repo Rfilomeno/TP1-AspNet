@@ -11,14 +11,16 @@ namespace Tp1_AspNet.Presentation.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index()
         {
-            ContatoDao dao = new ContatoDao();
+            EntityContext contexto = new EntityContext();
+
+            ContatoDao dao = new ContatoDao(contexto);
 
             Contato[] contatos = dao.GetAll();
 
             List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
-
             foreach (var contato in contatos)
             {
                 contatosVM.Add(new ContatoViewModel()
@@ -32,6 +34,28 @@ namespace Tp1_AspNet.Presentation.Controllers
             return View(contatosVM);
         }
 
+        public ActionResult ListaComTelefone()
+        {
+            EntityContext contexto = new EntityContext();
+
+            ContatoDao dao = new ContatoDao(contexto);
+
+            Contato[] contatos = dao.GetAll();
+
+            List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
+
+            foreach (var contato in contatos)
+            {
+                contatosVM.Add(new ContatoViewModel()
+                {
+                    Nome = contato.Nome,
+                    Sobrenome = contato.Sobrenome,
+                    Telefone = contato.Telefone
+                });
+            }
+
+            return View(contatosVM);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

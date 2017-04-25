@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ContatoDao.cs" />
     <Compile Include="EntityContext.cs" />
+    <Compile Include="IContatoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

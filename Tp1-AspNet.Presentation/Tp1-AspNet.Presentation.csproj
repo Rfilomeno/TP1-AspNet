@@ -201,6 +201,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ListaComTelefone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tp1-AspNet.Data\Tp1-AspNet.Data.csproj">
