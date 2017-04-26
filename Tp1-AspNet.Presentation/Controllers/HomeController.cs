@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Tp1_AspNet.Data;
 using Tp1_AspNet.Domain.Models;
@@ -19,6 +17,7 @@ namespace Tp1_AspNet.Presentation.Controllers
             ContatoDao dao = new ContatoDao(contexto);
 
             Contato[] contatos = dao.GetAll();
+            contatos = AdicionaContatosNoBancoSeNaoExistir(dao, contatos);
 
             List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
             foreach (var contato in contatos)
@@ -33,6 +32,7 @@ namespace Tp1_AspNet.Presentation.Controllers
 
             return View(contatosVM);
         }
+
 
         public ActionResult ListaComTelefone()
         {
@@ -69,5 +69,26 @@ namespace Tp1_AspNet.Presentation.Controllers
 
             return View();
         }
+        private static Contato[] AdicionaContatosNoBancoSeNaoExistir(ContatoDao dao, Contato[] contatos)
+        {
+            if (contatos.Count() == 0)
+            {
+                Contato contato1 = new Contato("Rodrigo", "Filomeno", 987536007, "rodrigo.filomeno@al.infnet.edu.br");
+                Contato contato2 = new Contato("Filipe", "Vasconcelos", 12354678, "Filipe.Vasconcelos@al.infnet.edu.br");
+                Contato contato3 = new Contato("Victor Hugo", "Dias", 456789456, "Victor.Dias@al.infnet.edu.br");
+                Contato contato4 = new Contato("Munir", "Wanis", 789456123, "Munir.Wanis@al.infnet.edu.br");
+                Contato contato5 = new Contato("Gabriel", "Bla", 654987321, "Gabriel.Bla@al.infnet.edu.br");
+                dao.Salva(contato1);
+                dao.Salva(contato2);
+                dao.Salva(contato3);
+                dao.Salva(contato4);
+                dao.Salva(contato5);
+
+                contatos = dao.GetAll();
+            }
+
+            return contatos;
+        }
+
     }
 }

@@ -17,5 +17,18 @@ namespace Tp1_AspNet.Domain.Models
         public int Telefone { get; set; }
 
         public string Email { get; set; }
+
+        public Contato()
+        {
+
+        }
+        public Contato(string nome, string sobrenome, int telefone, string email)
+        {
+            this.Nome = nome;
+            this.Sobrenome = sobrenome;
+            this.Telefone = telefone;
+            this.Email = email;
+
+        }
     }
 }

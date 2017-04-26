@@ -23,5 +23,11 @@ namespace Tp1_AspNet.Data
 
             return contatos;
         }
+
+        public void Salva(Contato contato)
+        {
+            _contexto.Contatos.Add(contato);
+            _contexto.SaveChanges();
+        }
     }
 }
