@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Tp1_AspNet.Data;
 using Tp1_AspNet.Domain.Models;
@@ -9,11 +10,11 @@ namespace Tp1_AspNet.Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        [OutputCache(Duration = 60)]
+       [OutputCache(Duration = 1)]
         public ActionResult Index()
         {
 
-            if (ViewData["contatos"] == null)
+            if (TempData["contatos"] == null)
             {
                 EntityContext contexto = new EntityContext();
 
@@ -36,23 +37,60 @@ namespace Tp1_AspNet.Presentation.Controllers
                         Selecionado = false
                     });
                 }
-
-                ViewData["contatos"] = contatosVM;
-                return View(ViewData["contatos"]);
+                
+                TempData["contatos"] = contatosVM;
+                TempData.Keep();
+                return View(TempData["contatos"]);
             }
             else
             {
-                return View(ViewData["contatos"]);
+                TempData.Keep();
+                return View(TempData["contatos"]);
             }
             
 
             
         }
+        public ActionResult Seleciona(string nome, string actionqueestava)
+        {
+            IList<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
+            contatosVM = (List<ContatoViewModel>)TempData["contatos"];
 
-        [OutputCache(Duration = 60)]
+
+            foreach (var item in contatosVM)
+            {
+                if (item.Nome == nome)
+                {
+                    if (item.Selecionado)
+                    {
+                        item.Selecionado = false;
+                    }
+                    else
+                    {
+                        item.Selecionado = true;
+                    }
+                    TempData.Clear();
+                    TempData["contatos"] = contatosVM;
+                    
+                }
+            }
+            TempData.Keep();
+            if (actionqueestava == "Index")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("ListaComTelefone");
+
+            }
+
+        }
+
+       [OutputCache(Duration = 1)]
         public ActionResult ListaComTelefone()
         {
-            if (ViewData["contatos"] == null)
+            if (TempData["contatos"] == null)
             {
                 EntityContext contexto = new EntityContext();
 
@@ -76,12 +114,14 @@ namespace Tp1_AspNet.Presentation.Controllers
                     });
                 }
 
-                ViewData["contatos"] = contatosVM;
-                return View(ViewData["contatos"]);
+                TempData["contatos"] = contatosVM;
+                TempData.Keep();
+                return View(TempData["contatos"]);
             }
             else
             {
-                return View(ViewData["contatos"]);
+                TempData.Keep();
+                return View(TempData["contatos"]);
             }
         }
 

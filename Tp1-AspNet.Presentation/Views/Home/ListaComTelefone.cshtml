@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Tp1_AspNet.Presentation.Models.ContatoViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista Com Telefone";
 }
 
-<h2>Lista Com Email</h2>
+<h2>ListaComTelefone</h2>
 
 <p>
-    @Html.ActionLink("Lista com Telefones", "ListaComTelefone")
+    @Html.ActionLink("Lista Com Emails", "Index")
 </p>
 <table class="table">
     <tr>
@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Sobrenome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Telefone)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Selecionado)
@@ -35,13 +35,13 @@
             @Html.DisplayFor(modelItem => item.Sobrenome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
+            @Html.DisplayFor(modelItem => item.Telefone)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Selecionado)
         </td>
         <td>
-            @Html.ActionLink("Selecionar", "Seleciona", new { nome=item.Nome, actionqueestava = "Index" })           
+            @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "ListaComTelefone" }) 
         </td>
     </tr>
 }
