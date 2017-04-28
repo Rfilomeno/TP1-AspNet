@@ -15,5 +15,7 @@ namespace Tp1_AspNet.Presentation.Models
         public int Telefone { get; set; }
 
         public string Email { get; set; }
+
+        public bool Selecionado { get; set; }
     }
 }

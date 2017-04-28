@@ -9,58 +9,80 @@ namespace Tp1_AspNet.Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        
+        [OutputCache(Duration = 60)]
         public ActionResult Index()
         {
-            EntityContext contexto = new EntityContext();
 
-            ContatoDao dao = new ContatoDao(contexto);
-
-            Contato[] contatos = dao.GetAll();
-            contatos = AdicionaContatosNoBancoSeNaoExistir(dao, contatos);
-
-            List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
-            foreach (var contato in contatos)
+            if (ViewData["contatos"] == null)
             {
-                contatosVM.Add(new ContatoViewModel()
-                {
-                    Nome = contato.Nome,
-                    Sobrenome = contato.Sobrenome,
-                    Email = contato.Email
-                });
-            }
+                EntityContext contexto = new EntityContext();
 
-            return View(contatosVM);
+                ContatoDao dao = new ContatoDao(contexto);
+
+                Contato[] contatos = dao.GetAll();
+                contatos = AdicionaContatosNoBancoSeNaoExistir(dao, contatos);
+
+
+
+                List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
+                foreach (var contato in contatos)
+                {
+                    contatosVM.Add(new ContatoViewModel()
+                    {
+                        Nome = contato.Nome,
+                        Sobrenome = contato.Sobrenome,
+                        Email = contato.Email,
+                        Telefone = contato.Telefone,
+                        Selecionado = false
+                    });
+                }
+
+                ViewData["contatos"] = contatosVM;
+                return View(ViewData["contatos"]);
+            }
+            else
+            {
+                return View(ViewData["contatos"]);
+            }
+            
+
+            
         }
 
-
+        [OutputCache(Duration = 60)]
         public ActionResult ListaComTelefone()
         {
-            EntityContext contexto = new EntityContext();
-
-            ContatoDao dao = new ContatoDao(contexto);
-
-            Contato[] contatos = dao.GetAll();
-
-            List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
-
-            foreach (var contato in contatos)
+            if (ViewData["contatos"] == null)
             {
-                contatosVM.Add(new ContatoViewModel()
+                EntityContext contexto = new EntityContext();
+
+                ContatoDao dao = new ContatoDao(contexto);
+
+                Contato[] contatos = dao.GetAll();
+                contatos = AdicionaContatosNoBancoSeNaoExistir(dao, contatos);
+
+
+
+                List<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
+                foreach (var contato in contatos)
                 {
-                    Nome = contato.Nome,
-                    Sobrenome = contato.Sobrenome,
-                    Telefone = contato.Telefone
-                });
+                    contatosVM.Add(new ContatoViewModel()
+                    {
+                        Nome = contato.Nome,
+                        Sobrenome = contato.Sobrenome,
+                        Email = contato.Email,
+                        Telefone = contato.Telefone,
+                        Selecionado = false
+                    });
+                }
+
+                ViewData["contatos"] = contatosVM;
+                return View(ViewData["contatos"]);
             }
-
-            return View(contatosVM);
-        }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            else
+            {
+                return View(ViewData["contatos"]);
+            }
         }
 
         public ActionResult Contact()
