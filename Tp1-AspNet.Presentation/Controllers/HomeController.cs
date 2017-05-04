@@ -139,7 +139,7 @@ namespace Tp1_AspNet.Presentation.Controllers
                 Contato contato2 = new Contato("Filipe", "Vasconcelos", 12354678, "Filipe.Vasconcelos@al.infnet.edu.br");
                 Contato contato3 = new Contato("Victor Hugo", "Dias", 456789456, "Victor.Dias@al.infnet.edu.br");
                 Contato contato4 = new Contato("Munir", "Wanis", 789456123, "Munir.Wanis@al.infnet.edu.br");
-                Contato contato5 = new Contato("Gabriel", "Bla", 654987321, "Gabriel.Bla@al.infnet.edu.br");
+                Contato contato5 = new Contato("Gabriel", "Ramos", 654987321, "Gabriel.Ramos@al.infnet.edu.br");
                 dao.Salva(contato1);
                 dao.Salva(contato2);
                 dao.Salva(contato3);
