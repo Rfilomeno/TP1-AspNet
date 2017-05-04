@@ -28,21 +28,44 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sobrenome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Selecionado)
-        </td>
-        <td>
-            @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "ListaComTelefone" }) 
-        </td>
+        @if (item.Selecionado)
+        {
+            <td style="background-color:lightgreen">
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td style="background-color:lightgreen">
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td style="background-color:lightgreen">
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td style="background-color:lightgreen">
+                @Html.DisplayFor(modelItem => item.Selecionado)
+            </td>
+            <td style="background-color:lightgreen">
+                @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "ListaComTelefone" })
+            </td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Selecionado)
+            </td>
+            <td>
+                @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "ListaComTelefone" })
+            </td>
+        }
+
+
     </tr>
 }
 
