@@ -1,0 +1,14 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista2";
+}
+
+<h2>ListaComTelefone</h2>
+
+<p>
+    @Html.ActionLink("Lista Com Emails", "Index")
+</p>
+
+@Html.Action("ListaComTelefone", "Home", true)
+

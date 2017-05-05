@@ -1,71 +1,13 @@
-﻿@model IEnumerable<Tp1_AspNet.Presentation.Models.ContatoViewModel>
-
+﻿
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Lista Com Email</h2>
 
+<h2>Lista Com Emails</h2>
 <p>
-    @Html.ActionLink("Lista com Telefones", "ListaComTelefone")
+    @Html.ActionLink("Lista com Telefones", "Lista2")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sobrenome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Selecionado)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        @if (item.Selecionado)
-        {
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Sobrenome)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Selecionado)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "Index" })
-            </td>
-        }
-        else
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sobrenome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Selecionado)
-            </td>
-            <td>
-                @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "Index" })
-            </td>
-        }
-        
-    </tr>
-}
-
-</table>
+@Html.Action("ListaComEmail", "Home", true)

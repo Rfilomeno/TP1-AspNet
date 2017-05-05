@@ -5,13 +5,22 @@ using System.Web.Mvc;
 using Tp1_AspNet.Data;
 using Tp1_AspNet.Domain.Models;
 using Tp1_AspNet.Presentation.Models;
+using DevTrends.MvcDonutCaching;
 
 namespace Tp1_AspNet.Presentation.Controllers
 {
     public class HomeController : Controller
     {
-       [OutputCache(Duration = 1)]
+        [DonutOutputCache(Duration = 30)]
         public ActionResult Index()
+        {
+            
+                return View();
+                                  
+        }
+
+        
+        public ActionResult ListaComEmail()
         {
 
             if (TempData["contatos"] == null)
@@ -37,7 +46,7 @@ namespace Tp1_AspNet.Presentation.Controllers
                         Selecionado = false
                     });
                 }
-                
+
                 TempData["contatos"] = contatosVM;
                 TempData.Keep();
                 return View(TempData["contatos"]);
@@ -47,10 +56,11 @@ namespace Tp1_AspNet.Presentation.Controllers
                 TempData.Keep();
                 return View(TempData["contatos"]);
             }
-            
 
-            
+
+
         }
+
         public ActionResult Seleciona(string nome, string actionqueestava)
         {
             IList<ContatoViewModel> contatosVM = new List<ContatoViewModel>();
@@ -75,19 +85,15 @@ namespace Tp1_AspNet.Presentation.Controllers
                 }
             }
             TempData.Keep();
-            if (actionqueestava == "Index")
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("ListaComTelefone");
-
-            }
-
+            return RedirectToAction(actionqueestava);
+            
         }
 
-       [OutputCache(Duration = 1)]
+        [DonutOutputCache(Duration = 30)]
+        public ActionResult Lista2()
+        {
+            return View();            
+        }
         public ActionResult ListaComTelefone()
         {
             if (TempData["contatos"] == null)
@@ -125,12 +131,6 @@ namespace Tp1_AspNet.Presentation.Controllers
             }
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         private static Contato[] AdicionaContatosNoBancoSeNaoExistir(ContatoDao dao, Contato[] contatos)
         {
             if (contatos.Count() == 0)

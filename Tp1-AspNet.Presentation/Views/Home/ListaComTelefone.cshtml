@@ -1,72 +1,65 @@
 ﻿@model IEnumerable<Tp1_AspNet.Presentation.Models.ContatoViewModel>
 
-@{
-    ViewBag.Title = "Lista Com Telefone";
-}
 
-<h2>ListaComTelefone</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Selecionado)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Lista Com Emails", "Index")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sobrenome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Selecionado)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        @if (item.Selecionado)
+        @foreach (var item in Model)
         {
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Sobrenome)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.DisplayFor(modelItem => item.Selecionado)
-            </td>
-            <td style="background-color:lightgreen">
-                @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "ListaComTelefone" })
-            </td>
-        }
-        else
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sobrenome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Selecionado)
-            </td>
-            <td>
-                @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "ListaComTelefone" })
-            </td>
+            <tr>
+                @if (item.Selecionado)
+                {
+                    <td style="background-color:lightgreen">
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td style="background-color:lightgreen">
+                        @Html.DisplayFor(modelItem => item.Sobrenome)
+                    </td>
+                    <td style="background-color:lightgreen">
+                        @Html.DisplayFor(modelItem => item.Telefone)
+                    </td>
+                    <td style="background-color:lightgreen">
+                        @Html.DisplayFor(modelItem => item.Selecionado)
+                    </td>
+                    <td style="background-color:lightgreen">
+                        @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "Lista2" })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sobrenome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Selecionado)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Selecionar", "Seleciona", new { nome = item.Nome, actionqueestava = "Lista2" })
+                    </td>
+                }
+
+
+            </tr>
         }
 
-
-    </tr>
-}
-
-</table>
+    </table>
